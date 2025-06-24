@@ -3,10 +3,13 @@ import circleshape
 from constants import *
 
 
+
 class Player(circleshape.CircleShape):
+    
     def __init__(self, x, y):
         super().__init__(x,y, PLAYER_RADIUS)
         self.rotation = 0
+        
 
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -26,9 +29,17 @@ class Player(circleshape.CircleShape):
     def update(self, dt):
         keys = pygame.key.get_pressed()
 
-        if keys[pygame.K_a]:
+        if keys[pygame.K_a]: # A spin left
             self.rotate(-dt)
-        if keys[pygame.K_d]:
+        if keys[pygame.K_d]: # D spin right
             self.rotate(dt)
+        if keys[pygame.K_w]: # W Forward
+            self.move(dt)
+        if keys[pygame.K_s]: # S Backward
+            self.move(-dt)
 
 
+
+    def move(self, dt):
+        forward = pygame.Vector2(0, 1).rotate(self.rotation)
+        self.position += forward * PLAYER_SPEED * dt
