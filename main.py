@@ -46,7 +46,10 @@ def main():
                 return
         
         # 2) update game state
+        print(f"Elapsed time: {dt}")
         updatable.update(dt)
+        player.shot_timer -= dt
+        
         for a in asteroids:
             if player.overlaps(a):
                 print("Game over!")
@@ -66,6 +69,7 @@ def main():
 
         # limit the framerate to 60 FPS
         dt = gameClock.tick(60)/1000
+        
 
 
 if __name__ == "__main__":
