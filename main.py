@@ -26,7 +26,7 @@ def main():
                 return
         
         # 2) update game state
-
+            player.update(dt)
         
         # 3) Clear screen
         screen.fill("BLACK")
