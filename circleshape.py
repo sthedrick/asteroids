@@ -13,6 +13,8 @@ class CircleShape(pygame.sprite.Sprite):
         self.velocity = pygame.Vector2(0, 0)
         self.radius = radius
 
+        
+
     def draw(self, screen):
         # sub-classes must override
         pass
@@ -22,7 +24,7 @@ class CircleShape(pygame.sprite.Sprite):
         pass
 
     def overlaps(self, otherShape):
-        if self.position.distance_to(otherShape.position) <= (self.radius + other.radius):
+        if self.position.distance_to(otherShape.position) <= (self.radius + otherShape.radius):
             return True
         
         return False

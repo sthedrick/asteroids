@@ -18,9 +18,11 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
     
     Player.containers = (updatable, drawable) # type: ignore
     Asteroid.containers = (updatable, drawable, asteroids) # type: ignore
+    Shot.containers = (updatable, drawable, shots) # type: ignore
     AsteroidField.containers = (updatable) # type: ignore
     asteroid_field = AsteroidField()
     # updatable.add(asteroid_field)
@@ -33,8 +35,8 @@ def main():
 
     
     print("Starting Asteroids!")
-    print(f"Screen width: {SCREEN_WIDTH}")
-    print(f"Screen height: {SCREEN_HEIGHT}")
+    # print(f"Screen width: {SCREEN_WIDTH}")
+    # print(f"Screen height: {SCREEN_HEIGHT}")
     
     #game loop
     while(True):

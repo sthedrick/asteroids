@@ -1,10 +1,11 @@
-import pygame
-import circleshape
+from pygame import *
+from circleshape import *
 from constants import *
+from shot import *
 
 
 
-class Player(circleshape.CircleShape):
+class Player(CircleShape):
     
     def __init__(self, x, y):
         super().__init__(x,y, PLAYER_RADIUS)
@@ -33,11 +34,18 @@ class Player(circleshape.CircleShape):
             self.rotate(-dt)
         if keys[pygame.K_d]: # D spin right
             self.rotate(dt)
-        if keys[pygame.K_w]: # W Forward
+        if keys[pygame.K_s]: # S Forward
             self.move(dt)
-        if keys[pygame.K_s]: # S Backward
+        if keys[pygame.K_w]: # W Backward
             self.move(-dt)
+        if keys[pygame.K_SPACE]: # space Shoot
+            self.shoot()
 
     def move(self, dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         self.position += forward * PLAYER_SPEED * dt
+
+    def shoot(self):
+        shot = Shot(self.position.x, self.position.y)
+        shot = Shot()
+        shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
