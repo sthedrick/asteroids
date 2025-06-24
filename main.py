@@ -1,7 +1,9 @@
+import sys
 import pygame
 from    constants import *
 from    player import *
 from    asteroidfield import *
+from    circleshape import *
 import asteroid
 
 
@@ -43,6 +45,12 @@ def main():
         
         # 2) update game state
         updatable.update(dt)
+        for a in asteroids:
+            if player.overlaps(a):
+                print("Game over!")
+                sys.exit()
+                return
+
         
         # 3) Clear screen
         screen.fill("BLACK")
