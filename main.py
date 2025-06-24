@@ -13,6 +13,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     gameClock = pygame.time.Clock()
     dt = 0
+    score = 0
 
     #sprite containers
     updatable = pygame.sprite.Group()
@@ -46,16 +47,25 @@ def main():
                 return
         
         # 2) update game state
-        print(f"Elapsed time: {dt}")
         updatable.update(dt)
         player.shot_timer -= dt
         
         for a in asteroids:
+            for s in shots:
+                if a.overlaps(s):
+                    s.kill()
+                    a1, a2 = a.split()
+                    asteroids.add(a1, a2)
+                    score +=1
+                    
+        for a in asteroids:
             if player.overlaps(a):
                 print("Game over!")
+                print(f"Score: {score}")
                 sys.exit()
                 return
 
+        
         
         # 3) Clear screen
         screen.fill("BLACK")
